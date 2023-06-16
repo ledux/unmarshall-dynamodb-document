@@ -57,6 +57,7 @@ This cli transforms it into the original data structure, e.g.
 ```
 ## Prerequisites
 - node
+- npm
 
 ## Installation
 
