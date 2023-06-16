@@ -4,19 +4,24 @@ const { program } = require("commander");
 const { unmarshall } = require("@aws-sdk/util-dynamodb");
 const fs = require("fs");
 
+var stdin = "";
+
 program
-  .command("do <jsonInput>")
+  .command("json <jsonInput>")
   // .option("-j, --json <jsonInput>", "raw json string as an input")
   .description("Remove the data types entries from document")
   .action(clean);
 
-// program
-// .command("do")
-// .option("-f, --file <filePath>", "json passed as contents of a file")
-// .description("Remove the data types entries from document")
-// .action(readFile);
+program
+  .command("file <filePath>")
+  // .option("-f, --file <filePath>", "json passed as contents of a file")
+  .description("Remove the data types entries from document")
+  .action(readFile);
 
 function clean(jsonInput) {
+  if (stdin) {
+    jsonInput = stdin;
+  }
   const json = JSON.parse(jsonInput);
   console.log(JSON.stringify(unmarshall(json)));
 }
@@ -31,4 +36,16 @@ function readFile(filePath) {
   });
 }
 
-program.parse();
+if (process.stdin.isTTY) {
+  program.parse();
+} else {
+  process.stdin.on("readable", function () {
+    var chunk = this.read();
+    if (chunk !== null) {
+      stdin += chunk;
+    }
+  });
+  process.stdin.on("end", function () {
+    program.parse(process.argv);
+  });
+}
