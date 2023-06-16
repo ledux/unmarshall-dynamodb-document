@@ -1,0 +1,29 @@
+{
+  "HandledAt": {
+    "NULL": true
+  },
+  "EventData": {
+    "M": {
+      "Metadata": {
+        "M": {
+          "FlowId": {
+            "S": "d7e22086-e920-4f07-a5cf-e1da10709ce1"
+          },
+          "OriginalEventType": {
+            "S": "lead-generation-efset-prospects.prospect-created"
+          },
+          "insertDate": {
+            "S": "2023-06-15T08:02:05.114Z"
+          }
+        }
+      },
+      "Payload": {
+        "M": {
+          "bd_year": {
+            "S": "2002"
+          }
+        }
+      }
+    }
+  }
+}
