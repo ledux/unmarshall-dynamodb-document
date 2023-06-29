@@ -62,8 +62,9 @@ This cli transforms it into the original data structure, e.g.
 ## Installation
 
 ```sh
-git clone
+git clone git@github.com:ledux/unmarshall-dynamodb-document.git
 cd unmarshall-dynamodb-document
+npm i commander
 npm i -g
 ```
 
